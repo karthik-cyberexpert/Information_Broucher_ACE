@@ -14,7 +14,12 @@ export const FlippingImage = () => {
     };
 
     return (
-        <div className="perspective-1000">
+        <motion.div
+            initial={{ scale: 0.9, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="perspective-1000 flex items-center justify-center w-full h-full"
+        >
             <div className="relative w-[340px] h-[480px] md:w-[400px] md:h-[550px] cursor-pointer group" onClick={handleFlip}>
                 <motion.div
                     className="w-full h-full relative preserve-3d"
@@ -51,14 +56,15 @@ export const FlippingImage = () => {
                     </div>
 
                     {/* Back Side */}
-                    <div className="absolute inset-0 w-full h-full backface-hidden rounded-3xl overflow-hidden border border-white/10 shadow-2xl bg-[#0f1014] p-8 flex flex-col items-center justify-center text-center"
-                        style={{ transform: "rotateY(180deg)" }}>
+                    <div className="absolute inset-0 w-full h-full backface-hidden rounded-3xl overflow-hidden border border-white/10 shadow-2xl bg-[#0f1014] p-8"
+                        style={{ transform: "rotateY(180deg)", backfaceVisibility: "hidden" }}>
 
-                        {/* Decorative Elements */}
-                        <div className="absolute top-0 right-0 w-32 h-32 bg-blue-500/10 rounded-full blur-[50px] pointer-events-none"></div>
-                        <div className="absolute bottom-0 left-0 w-32 h-32 bg-purple-500/10 rounded-full blur-[50px] pointer-events-none"></div>
+                        {/* Content Wrapper to counteract the card rotation and prevent mirrored text */}
+                        <div className="w-full h-full flex flex-col items-center justify-center text-center relative z-10">
+                            {/* Decorative Elements */}
+                            <div className="absolute top-0 right-0 w-32 h-32 bg-blue-500/10 rounded-full blur-[50px] pointer-events-none"></div>
+                            <div className="absolute bottom-0 left-0 w-32 h-32 bg-purple-500/10 rounded-full blur-[50px] pointer-events-none"></div>
 
-                        <div className="relative z-10">
                             <div className="w-16 h-16 bg-gradient-to-br from-blue-500/20 to-purple-500/20 rounded-2xl flex items-center justify-center mb-6 mx-auto border border-white/5 shadow-inner">
                                 <Building2 className="w-8 h-8 text-blue-400" />
                             </div>
@@ -78,14 +84,10 @@ export const FlippingImage = () => {
                                 Virtual Tour
                                 <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
                             </button>
-
-                            <button className="mt-4 text-xs text-gray-500 hover:text-white transition-colors uppercase tracking-wider">
-                                View Admissions
-                            </button>
                         </div>
                     </div>
                 </motion.div>
             </div>
-        </div>
+        </motion.div>
     );
 };

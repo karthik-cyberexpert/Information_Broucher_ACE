@@ -1,5 +1,5 @@
 import { Header } from './components/Header';
-import { FlippingImage } from './components/FlippingImage';
+import { ImageSlider } from './components/ImageSlider';
 import { BottomMenu } from './components/BottomMenu';
 
 function App() {
@@ -16,14 +16,18 @@ function App() {
         <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_60%_60%_at_50%_50%,black,transparent)]"></div>
       </div>
 
-      <div className="relative z-10 flex flex-col h-screen">
-        <Header />
+      <div className="relative z-10 flex flex-col items-center justify-between min-h-screen w-full py-8 md:py-12 px-4 md:px-6 gap-4 md:gap-8">
+        <div className="w-full flex justify-center">
+          <Header />
+        </div>
 
-        <main className="flex-grow flex flex-col items-center justify-center p-6 pb-24">
-          <FlippingImage />
+        <main className="w-full flex-grow flex items-center justify-center max-w-7xl mx-auto">
+          <ImageSlider />
         </main>
 
-        <BottomMenu />
+        <div className="w-full flex justify-center">
+          <BottomMenu />
+        </div>
       </div>
     </div>
   );
